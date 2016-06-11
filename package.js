@@ -17,6 +17,6 @@ Package.onUse(function(api) {
 Package.onTest(function(api) {
   api.use('ecmascript');
   api.use('tinytest');
-  api.use('sync-new');
+  // api.use('sync-new');
   api.mainModule('sync-new-tests.js');
 });
