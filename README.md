@@ -1,3 +1,7 @@
+Note: 
+0.1.x branch supports Meteor < 1.3
+0.2.x branch supports Meteor 1.3.x+
+
 Meteor.syncMethods
 ==================
 
@@ -10,13 +14,13 @@ How to use
 
 ```js
 Meteor.syncMethods({
-	myMethodOne: function(myArg1, myArg2, callback){
-		// do some async stuff
-		callback(err, result);
-	}
-	, myMethodTwo: function(callback){
-		callback(err, result);
-	}
+  myMethodOne: function(myArg1, myArg2, callback){
+    // do some async stuff
+    callback(err, result);
+  }
+  , myMethodTwo: function(callback){
+    callback(err, result);
+  }
 });
 
 ```

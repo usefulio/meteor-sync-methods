@@ -1,10 +1,6 @@
 // passed in functions should call the callback(err, result); result will be returned
-
-var Fiber = Npm.require('fibers')
-
-SYNC_METHODS = {};
-
-SYNC_METHODS.runSync = runSync;
+import Fiber from 'fibers';
+import { Meteor } from 'meteor/meteor';
 
 // this code originally from @scottburch here: https://github.com/meteor/meteor/issues/74
 
@@ -30,16 +26,16 @@ function runSync(func, thisArg) {
 }
 
 _.extend(Meteor, {
-	syncMethods: function(methods){
-		_.each(methods, function(method, methodName){
-			methods[methodName] = function(){
-				this.unblock();
-				var args = Array.prototype.slice.call(arguments);
-				args.unshift(this);
-				args.unshift(method);
-				return runSync.apply(undefined, args);
-			}
-		});
-		Meteor.methods(methods);
-	}
+  syncMethods: function(methods){
+    _.each(methods, function(method, methodName){
+      methods[methodName] = function(){
+        this.unblock();
+        var args = Array.prototype.slice.call(arguments);
+        args.unshift(this);
+        args.unshift(method);
+        return runSync.apply(undefined, args);
+      }
+    });
+    Meteor.methods(methods);
+  }
 });
